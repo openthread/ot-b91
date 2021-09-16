@@ -82,7 +82,7 @@ jobs:
         sudo apt-get --no-install-recommends install -y lib32z1 ninja-build
         sudo apt-get install unzip
         sudo apt-get install lib32ncurses5
-        wget ${{ matrix.gcc_download_url }} -O gcc-riscv32.zip
+        wget --tries 4 --no-check-certificate --quiet ${{ matrix.gcc_download_url }} -O gcc-riscv32.zip
         unzip gcc-riscv32.zip
         # use the minimal required cmake version
         sudo pip3 install --system -U cmake==3.10.3
