@@ -49,7 +49,7 @@ jobs:
   pretty:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         submodules: true
     - name: Bootstrap
@@ -72,7 +72,7 @@ jobs:
             gcc_download_url: http://wiki.telink-semi.cn/tools_and_sdk/Tools/IDE/telink_riscv_linux_toolchain.zip
             gcc_extract_dir: telink_riscv_linux_toolchain
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         submodules: true
     - name: Bootstrap
