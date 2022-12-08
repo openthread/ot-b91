@@ -37,10 +37,7 @@
 #include <openthread/platform/radio.h>
 #include "utils/code_utils.h"
 
-void b91RandomInit(void)
-{
-    trng_init();
-}
+void b91RandomInit(void) { trng_init(); }
 
 otError otPlatEntropyGet(uint8_t *aOutput, uint16_t aOutputLength)
 {

@@ -46,10 +46,7 @@ static uint32_t          sAlarmTime = 0;
 static uint32_t          sLastTick  = 0;
 static bool              sIsRunning = false;
 
-static inline uint32_t GetCurrentMs(uint32_t aMs, uint32_t aTick)
-{
-    return aMs + aTick / 24000;
-}
+static inline uint32_t GetCurrentMs(uint32_t aMs, uint32_t aTick) { return aMs + aTick / 24000; }
 
 void b91AlarmProcess(otInstance *aInstance)
 {
