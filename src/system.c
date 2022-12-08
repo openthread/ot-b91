@@ -52,14 +52,9 @@ void otSysInit(int argc, char *argv[])
     b91RadioInit();
 }
 
-void otSysDeinit(void)
-{
-}
+void otSysDeinit(void) {}
 
-int otSysPseudoResetWasRequested(void)
-{
-    return 0;
-}
+int otSysPseudoResetWasRequested(void) { return 0; }
 
 void otSysProcessDrivers(otInstance *aInstance)
 {

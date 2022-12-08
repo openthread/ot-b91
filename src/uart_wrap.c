@@ -96,10 +96,7 @@ otError otPlatUartEnable(void)
     return OT_ERROR_NONE;
 }
 
-otError otPlatUartDisable(void)
-{
-    return OT_ERROR_NONE;
-}
+otError otPlatUartDisable(void) { return OT_ERROR_NONE; }
 
 otError otPlatUartSend(const uint8_t *aBuf, uint16_t aBufLength)
 {
