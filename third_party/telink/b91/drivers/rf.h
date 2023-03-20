@@ -59,22 +59,22 @@
 #define		rf_ble_packet_crc_ok(p)						((p[(p[5]+5 + 11)] & 0x01) == 0x0)
 
 
-/******************************************************FOR ESB************************************************************/
+/******************************************************FOR TPLL************************************************************/
 
 /**
- *  @brief Those setting of offset according to private esb packet format, so this setting for ble only.
+ *  @brief Those setting of offset according to private tpll packet format, so this setting for ble only.
  */
-#define 	RF_PRI_ESB_DMA_RFRX_OFFSET_RFLEN				4
+#define 	RF_PRI_TPLL_DMA_RFRX_OFFSET_RFLEN				4
 
 /**
  *  @brief According to the packet format find the information of packet through offset.
  */
 
-#define 	rf_pri_esb_dma_rx_offset_crc(p)					(p[RF_PRI_ESB_DMA_RFRX_OFFSET_RFLEN]+5)  //data len:2
-#define 	rf_pri_esb_dma_rx_offset_time_stamp(p)			(p[RF_PRI_ESB_DMA_RFRX_OFFSET_RFLEN]+7)  //data len:4
-#define 	rf_pri_esb_dma_rx_offset_freq_offset(p)			(p[RF_PRI_ESB_DMA_RFRX_OFFSET_RFLEN]+11) //data len:2
-#define 	rf_pri_esb_dma_rx_offset_rssi(p)				(p[RF_PRI_ESB_DMA_RFRX_OFFSET_RFLEN]+13) //data len:1, signed
-#define     rf_pri_esb_packet_crc_ok(p)            		((p[((p[4] & 0x3f) + 11+3)] & 0x01) == 0x00)
+#define 	rf_pri_tpll_dma_rx_offset_crc(p)					(p[RF_PRI_TPLL_DMA_RFRX_OFFSET_RFLEN]+5)  //data len:2
+#define 	rf_pri_tpll_dma_rx_offset_time_stamp(p)			(p[RF_PRI_TPLL_DMA_RFRX_OFFSET_RFLEN]+7)  //data len:4
+#define 	rf_pri_tpll_dma_rx_offset_freq_offset(p)			(p[RF_PRI_TPLL_DMA_RFRX_OFFSET_RFLEN]+11) //data len:2
+#define 	rf_pri_tpll_dma_rx_offset_rssi(p)				(p[RF_PRI_TPLL_DMA_RFRX_OFFSET_RFLEN]+13) //data len:1, signed
+#define     rf_pri_tpll_packet_crc_ok(p)            		((p[((p[4] & 0x3f) + 11+3)] & 0x01) == 0x00)
 
 
 #define     rf_pri_sb_packet_crc_ok(p)              	((p[(reg_rf_sblen & 0x3f)+4+9] & 0x01) == 0x00)
