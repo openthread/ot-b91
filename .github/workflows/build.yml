@@ -64,7 +64,7 @@ jobs:
 
   riscv32-gcc:
     name: riscv32-gcc-${{ matrix.gcc_ver }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         include:
@@ -78,15 +78,13 @@ jobs:
     - name: Bootstrap
       run: |
         cd /tmp
+        sudo dpkg --add-architecture i386
         sudo rm /etc/apt/sources.list.d/* && sudo apt-get update
         sudo apt-get --no-install-recommends install -y lib32z1 ninja-build
         sudo apt-get install unzip
-        sudo apt-get install lib32ncurses5
+        sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386
         wget ${{ matrix.gcc_download_url }} -O gcc-riscv32.zip
         unzip gcc-riscv32.zip
-        # use the minimal required cmake version
-        sudo pip3 install --system -U cmake==3.10.3
-        cmake --version | grep 3.10.3
     - name: Build
       run: |
         export PATH=/tmp/${{ matrix.gcc_extract_dir }}/nds32le-elf-mculib-v5f/bin:$PATH
