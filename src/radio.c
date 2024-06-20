@@ -219,7 +219,7 @@ otError otPlatRadioEnable(otInstance *aInstance)
 {
     if (!otPlatRadioIsEnabled(aInstance))
     {
-        otLogDebgPlat("State=OT_RADIO_STATE_SLEEP", NULL);
+        otLogDebgPlat("State=OT_RADIO_STATE_SLEEP");
         sState = OT_RADIO_STATE_SLEEP;
     }
 
@@ -230,7 +230,7 @@ otError otPlatRadioDisable(otInstance *aInstance)
 {
     if (otPlatRadioIsEnabled(aInstance))
     {
-        otLogDebgPlat("State=OT_RADIO_STATE_DISABLED", NULL);
+        otLogDebgPlat("State=OT_RADIO_STATE_DISABLED");
         sState = OT_RADIO_STATE_DISABLED;
     }
 
@@ -245,7 +245,7 @@ otError otPlatRadioSleep(otInstance *aInstance)
 
     if (sState == OT_RADIO_STATE_SLEEP || sState == OT_RADIO_STATE_RECEIVE)
     {
-        otLogDebgPlat("State=OT_RADIO_STATE_SLEEP", NULL);
+        otLogDebgPlat("State=OT_RADIO_STATE_SLEEP");
         error  = OT_ERROR_NONE;
         sState = OT_RADIO_STATE_SLEEP;
         rf_set_txmode();
@@ -268,7 +268,7 @@ otError otPlatRadioReceive(otInstance *aInstance, uint8_t aChannel)
 
     if (sState != OT_RADIO_STATE_DISABLED)
     {
-        otLogDebgPlat("State=OT_RADIO_STATE_RECEIVE", NULL);
+        otLogDebgPlat("State=OT_RADIO_STATE_RECEIVE");
 
         error  = OT_ERROR_NONE;
         sState = OT_RADIO_STATE_RECEIVE;

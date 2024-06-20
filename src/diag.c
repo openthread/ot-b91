@@ -33,6 +33,7 @@
 
 #include <openthread/config.h>
 #include <openthread/platform/alarm-milli.h>
+#include <openthread/platform/diag.h>
 #include <openthread/platform/radio.h>
 
 #include "platform-b91.h"
@@ -43,15 +44,41 @@
  * Diagnostics mode variables.
  *
  */
-static bool sDiagMode = false;
+static bool                     sDiagMode            = false;
+static otPlatDiagOutputCallback sDiagOutputCallback  = NULL;
+static void                    *sDiagCallbackContext = NULL;
 
-void otPlatDiagProcess(otInstance *aInstance, int argc, char *argv[], char *aOutput, size_t aOutputMaxLen)
+static void diagOutput(const char *aFormat, ...)
 {
-    OT_UNUSED_VARIABLE(argc);
+    va_list args;
+
+    va_start(args, aFormat);
+
+    if (sDiagOutputCallback != NULL)
+    {
+        sDiagOutputCallback(aFormat, args, sDiagCallbackContext);
+    }
+
+    va_end(args);
+}
+
+void otPlatDiagSetOutputCallback(otInstance *aInstance, otPlatDiagOutputCallback aCallback, void *aContext)
+{
     OT_UNUSED_VARIABLE(aInstance);
 
+    sDiagOutputCallback  = aCallback;
+    sDiagCallbackContext = aContext;
+}
+
+otError otPlatDiagProcess(otInstance *aInstance, uint8_t aArgsLength, char *aArgs[])
+{
+    OT_UNUSED_VARIABLE(aInstance);
+    OT_UNUSED_VARIABLE(aArgsLength);
+
     // Add more platform specific diagnostics features here.
-    snprintf(aOutput, aOutputMaxLen, "diag feature '%s' is not supported\r\n", argv[0]);
+    diagOutput("diag feature '%s' is not supported\r\n", aArgs[0]);
+
+    return OT_ERROR_INVALID_COMMAND;
 }
 
 void otPlatDiagModeSet(bool aMode) { sDiagMode = aMode; }
