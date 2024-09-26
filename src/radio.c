@@ -549,7 +549,7 @@ void B91RxTxIntHandler()
                     }
 
                     sAckFrame.mPsdu[1] = 0;
-                    sAckFrame.mPsdu[2] = otMacFrameGetSequence(rx_frame_ptr);
+                    otEXPECT(otMacFrameGetSequence(rx_frame_ptr, &sAckFrame.mPsdu[2]) == OT_ERROR_NONE);
 
                     sAckFrame.mChannel = rx_frame_ptr->mChannel;
 
