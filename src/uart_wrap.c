@@ -41,7 +41,7 @@
 
 #include <openthread/platform/debug_uart.h>
 #include <openthread/platform/logging.h>
-//#include <openthread/platform/uart.h>
+// #include <openthread/platform/uart.h>
 #include "utils/uart.h"
 
 #include "platform-b91.h"
