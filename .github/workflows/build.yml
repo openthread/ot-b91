@@ -43,15 +43,15 @@ concurrency:
 jobs:
 
   pretty:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       with:
         submodules: true
     - name: Bootstrap
       run: |
-        sudo rm /etc/apt/sources.list.d/* && sudo apt-get update
-        sudo apt-get --no-install-recommends install -y clang-format-14 shellcheck
+        sudo apt-get update
+        sudo apt-get --no-install-recommends install -y clang-format-16 shellcheck
         python3 -m pip install yapf==0.29.0
         sudo snap install shfmt
     - name: Check
