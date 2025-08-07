@@ -70,7 +70,7 @@ static uint32_t sWritePointer     = 0;
 static uint32_t sInCriticalRegion = 0;
 
 static uint8_t sCurrentChannel;
-#define LOGICCHANNEL_TO_PHYSICAL(p) (((p)-10) * 5)
+#define LOGICCHANNEL_TO_PHYSICAL(p) (((p) - 10) * 5)
 #define B91_RECEIVE_SENSITIVITY (-99)
 
 static otExtAddress   sExtAddress;
