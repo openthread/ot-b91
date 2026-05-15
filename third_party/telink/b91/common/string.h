@@ -63,7 +63,7 @@ void   	memcpy4(void * dest, const void * src, unsigned int);
 void *	memchr(const void *_s, int _c, unsigned int _n);
 int		memcmp(const void *_s1, const void *_s2, unsigned int _n);
 
-char *	strcat(char *_s1, const char *_s2);
+/* strcat() removed: use strncat() with explicit buffer length to prevent buffer overflow */
 char *	strchr(const char *_s, int _c);
 int		strcmp(const char *_s1, const char *_s2);
 int		strcoll(const char *_s1, const char *_s2);
