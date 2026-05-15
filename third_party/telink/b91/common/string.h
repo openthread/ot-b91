@@ -67,7 +67,7 @@ char *	strcat(char *_s1, const char *_s2);
 char *	strchr(const char *_s, int _c);
 int		strcmp(const char *_s1, const char *_s2);
 int		strcoll(const char *_s1, const char *_s2);
-char *	strcpy(char *_s1, const char *_s2);
+/* strcpy() removed: use strncpy() with explicit buffer length to prevent buffer overflow */
 unsigned int	strcspn(const char *_s1, const char *_s2);
 char *	strerror(int _errcode);
 unsigned int	strlen(const char *_s);
