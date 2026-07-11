@@ -63,11 +63,11 @@ void   	memcpy4(void * dest, const void * src, unsigned int);
 void *	memchr(const void *_s, int _c, unsigned int _n);
 int		memcmp(const void *_s1, const void *_s2, unsigned int _n);
 
-char *	strcat(char *_s1, const char *_s2);
+/* strcat() removed: use strncat() with explicit buffer length to prevent buffer overflow */
 char *	strchr(const char *_s, int _c);
 int		strcmp(const char *_s1, const char *_s2);
 int		strcoll(const char *_s1, const char *_s2);
-char *	strcpy(char *_s1, const char *_s2);
+/* strcpy() removed: use strncpy() with destination buffer size and manual null-termination to prevent buffer overflow */
 unsigned int	strcspn(const char *_s1, const char *_s2);
 char *	strerror(int _errcode);
 unsigned int	strlen(const char *_s);
