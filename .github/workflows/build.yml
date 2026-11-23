@@ -53,6 +53,8 @@ jobs:
         submodules: recursive
         persist-credentials: false
     - name: Bootstrap
+      timeout-minutes: 10
+      shell: bash ./openthread/script/retry {0}
       run: |
         sudo apt-get update
         sudo apt-get --no-install-recommends install -y clang-format-19 shellcheck shfmt
@@ -82,23 +84,15 @@ jobs:
         path: /tmp/${{ matrix.gcc_extract_dir }}
         key: riscv32-gcc-${{ matrix.gcc_ver }}-${{ matrix.gcc_sha256 }}
     - name: Bootstrap
-      timeout-minutes: 25
-      env:
-        GCC_DOWNLOAD_URL: ${{ matrix.gcc_download_url }}
-        GCC_EXTRACT_DIR: ${{ matrix.gcc_extract_dir }}
-        GCC_SHA256: ${{ matrix.gcc_sha256 }}
+      timeout-minutes: 10
+      shell: bash ./openthread/script/retry {0}
       run: |
         set -euo pipefail
 
         sudo dpkg --add-architecture i386
         sudo rm -f /etc/apt/sources.list.d/*
-        apt_opts=(
-          -o Acquire::Retries=3
-          -o Acquire::http::Timeout=15
-          -o Acquire::https::Timeout=15
-        )
-        sudo apt-get "${apt_opts[@]}" update
-        sudo DEBIAN_FRONTEND=noninteractive apt-get "${apt_opts[@]}" \
+        sudo apt-get update
+        sudo DEBIAN_FRONTEND=noninteractive apt-get \
           --no-install-recommends install -y \
           ca-certificates \
           curl \
@@ -108,6 +102,14 @@ jobs:
           ninja-build \
           unzip \
           wget
+    - name: Install Telink RISC-V toolchain
+      timeout-minutes: 25
+      env:
+        GCC_DOWNLOAD_URL: ${{ matrix.gcc_download_url }}
+        GCC_EXTRACT_DIR: ${{ matrix.gcc_extract_dir }}
+        GCC_SHA256: ${{ matrix.gcc_sha256 }}
+      run: |
+        set -euo pipefail
 
         if [[ -z "${GCC_EXTRACT_DIR}" || "${GCC_EXTRACT_DIR}" == "." || "${GCC_EXTRACT_DIR}" == ".." || "${GCC_EXTRACT_DIR}" == */* ]]; then
           echo "ERROR: invalid GCC_EXTRACT_DIR '${GCC_EXTRACT_DIR}'" >&2
